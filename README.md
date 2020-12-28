@@ -25,14 +25,18 @@ The above process can be represented in different kinds of ways:
 - [Ordinary differential equation using ModelingToolkit.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/ode_mtk/ode_mtk.md)
 - [Stochastic differential equation using DifferentialEquations.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/sde/sde.md)
 - [Stochastic differential equation using StochasticDiffEq.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/sde_stochasticdiffeq/sde_stochasticdiffeq.md)
+- [Linear noise approximation (LNA) to the stochastic differential equation](https://github.com/epirecipes/sir-julia/blob/master/markdown/lna/lna.md)
+- [Multivariate birth process reparameterisation of the stochastic differential equation](https://github.com/epirecipes/sir-julia/blob/master/markdown/mbp/mbp.md)
 - [Function map](https://github.com/epirecipes/sir-julia/blob/master/markdown/function_map/function_map.md)
 - [Stochastic Markov model](https://github.com/epirecipes/sir-julia/blob/master/markdown/markov/markov.md)
 - [Jump process (Gillespie) using DifferentialEquations.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/jump_process/jump_process.md)
 - [Jump process (Gillespie) using reaction networks from DiffEqBiological.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/jump_process_diffeqbio/jump_process_diffeqbio.md)
 - [Reaction network conversion to ODEs, SDEs and jump process using ModelingToolkit](https://github.com/epirecipes/sir-julia/blob/master/markdown/rn_mtk/rn_mtk.md)
+- [Petri net model to ODEs, SDEs, and jump process using Petri.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/pn_petri/pn_petri.md)
+- [Petri net model to ODEs, SDEs, and jump process using AlgebraicPetri.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/pn_algebraicpetri/pn_algebraicpetri.md)
 - [Jump process (Gillespie) using Gillespie.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/jump_process_gillespie/jump_process_gillespie.md)
 - [Discrete event simulation using SimJulia](https://github.com/epirecipes/sir-julia/blob/master/markdown/des/des.md)
-- [Agent-based model using base Julia](https://github.com/epirecipes/sir-julia/blob/master/markdown/abm_vector/abm_vector.md) as well [as using DifferentialEquations](https://github.com/epirecipes/sir-julia/blob/master/markdown/abm_vector/abm_vector_diffeq.md)
+- [Agent-based model using base Julia](https://github.com/epirecipes/sir-julia/blob/master/markdown/abm_vector/abm_vector.md) as well [as using DifferentialEquations](https://github.com/epirecipes/sir-julia/blob/master/markdown/abm_vector_diffeq/abm_vector_diffeq.md)
 - [Agent-based model using Agents.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/abm/abm.md)
 
 ## Generating simulated data
@@ -48,6 +52,7 @@ In addition to the above examples of simulation, there are also examples of infe
 - [Point estimates of parameters of the ODE system using Optim.jl and DiffEqParamEstim.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/ode_optim/ode_optim.md)
 - [Bayesian estimates of parameters of the ODE system using Approximate Bayesian Computation](https://github.com/epirecipes/sir-julia/blob/master/markdown/ode_abc/ode_abc.md)
 - [Bayesian estimates of parameters of the ODE system using Turing.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/ode_turing/ode_turing.md)
+- [Bayesian estimates of parameters of the ODE system using NestedSamplers.jl](https://github.com/epirecipes/sir-julia/blob/master/markdown/ode_nestedsampling/ode_nestedsampling.md)
 
 
 ## Comments on implementations
@@ -62,9 +67,8 @@ Thanks to [`Weave.jl`](https://github.com/JunoLab/Weave.jl), Julia Markdown file
 
 - [Jupyter notebooks](https://github.com/epirecipes/sir-julia/tree/master/notebook)
 - [GitHub Markdown](https://github.com/epirecipes/sir-julia/tree/master/markdown)
-- [PDF](https://github.com/epirecipes/sir-julia/tree/master/notebook)
-- [HTML](https://github.com/epirecipes/sir-julia/tree/master/notebook)
-- [Julia script](https://github.com/epirecipes/sir-julia/tree/master/notebook)
+- [HTML](https://github.com/epirecipes/sir-julia/tree/master/html)
+- [Julia script](https://github.com/epirecipes/sir-julia/tree/master/script)
 
 ## Running notebooks
 
@@ -127,5 +131,10 @@ Examples use the following libraries:
 - [`SimJulia`](https://github.com/BenLauwens/SimJulia.jl) for discrete event simulations
 - [`Agents.jl`](https://github.com/JuliaDynamics/Agents.jl) for agent-based models
 - [`Gillespie.jl`](https://github.com/sdwfrost/Gillespie.jl) for the Doob-Gillespie process
+- [`Petri.jl`](https://github.com/mehalter/Petri.jl) for the Petri net models
+- [`AlgebraicPetri.jl`](https://github.com/AlgebraicJulia/AlgebraicPetri.jl) for a category theory based modeling framework for creating Petri net models
+- [`Turing.jl`](https://turing.ml) for inference using probabilistic programs
+- [`NestedSamplers.jl`](https://github.com/TuringLang/NestedSamplers.jl) for nested sampling
+- [`GpABC`](https://github.com/tanhevg/GpABC.jl) for inference using Approximate Bayesian Computation
 
 Parts of the code were taken from @ChrisRackauckas [`DiffEqTutorials`](https://github.com/SciML/DiffEqTutorials.jl), which comes highly recommended.

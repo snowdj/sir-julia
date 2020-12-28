@@ -1,10 +1,12 @@
 
 using DifferentialEquations
 using StochasticDiffEq
+using DiffEqCallbacks
 using Random
 using SparseArrays
 using DataFrames
 using StatsPlots
+using BenchmarkTools
 
 
 function sir_ode!(du,u,p,t)
@@ -34,13 +36,26 @@ function sir_noise!(du,u,p,t)
     (S,I,R) = u
     (β,c,γ) = p
     N = S+I+R
-    ifrac = β*I/N*S
+    ifrac = β*c*I/N*S
     rfrac = γ*I
     du[1,1] = -sqrt(ifrac)
     du[2,1] = sqrt(ifrac)
     du[2,2] = -sqrt(rfrac)
     du[3,2] = sqrt(rfrac)
 end;
+
+
+function condition(u,t,integrator) # Event when event_f(u,t) == 0
+  u[2]
+end
+
+
+function affect!(integrator)
+  integrator.u[2] = 0.0
+end
+
+
+cb = ContinuousCallback(condition,affect!)
 
 
 δt = 0.1
@@ -61,7 +76,7 @@ Random.seed!(1234);
 prob_sde = SDEProblem(sir_ode!,sir_noise!,u0,tspan,p,noise_rate_prototype=A)
 
 
-sol_sde = solve(prob_sde,SRA1());
+sol_sde = solve(prob_sde,LambaEM(),callback=cb);
 
 
 df_sde = DataFrame(sol_sde(t)')
@@ -73,6 +88,9 @@ df_sde[!,:t] = t;
     label=["S" "I" "R"],
     xlabel="Time",
     ylabel="Number")
+
+
+@benchmark solve(prob_sde,LambaEM(),callback=cb)
 
 
 include(joinpath(@__DIR__,"tutorials","appendix.jl"))
